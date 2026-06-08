@@ -10,7 +10,7 @@
 let s:configuration = everforest#get_configuration()
 let s:palette = everforest#get_palette(s:configuration.background, s:configuration.colors_override)
 let s:path = expand('<sfile>:p') " the path of this script
-let s:last_modified = 'Thu Apr 16 17:32:20 UTC 2026'
+let s:last_modified = 'Mon Jun  8 10:03:45 AM UTC 2026'
 let g:everforest_loaded_file_types = []
 
 if !(exists('g:colors_name') && g:colors_name ==# 'everforest' && s:configuration.better_performance)
@@ -1507,18 +1507,39 @@ highlight! link MiniPickPrompt NormalFloat
 if s:configuration.float_style ==# 'dim'
   call everforest#highlight('MiniPickPromptPrefix', s:palette.orange, s:palette.bg_dim)
   call everforest#highlight('MiniPickPromptCaret', s:palette.blue, s:palette.bg_dim)
+  call everforest#highlight('MiniInputCaret', s:palette.blue, s:palette.bg_dim)
+  call everforest#highlight('MiniInputAdded', s:palette.green, s:palette.bg_dim)
+  call everforest#highlight('MiniInputHint', s:palette.grey1, s:palette.bg_dim)
+  call everforest#highlight('MiniInputSpecial', s:palette.orange, s:palette.bg_dim)
+  call everforest#highlight('MiniInputHide', s:palette.yellow, s:palette.bg0, 'bold')
 elseif s:configuration.float_style ==# 'blend'
   if s:configuration.transparent_background
     highlight! link MiniPickPromptPrefix Orange
     highlight! link MiniPickPromptCaret Blue
+    highlight! link MiniInputCaret Blue
+    highlight! link MiniInputAdded Green
+    highlight! link MiniInputHint Grey
+    highlight! link MiniInputSpecial Orange
+    call everforest#highlight('MiniInputHide', s:palette.yellow, s:palette.none, 'bold')
   else
     call everforest#highlight('MiniPickPromptPrefix', s:palette.orange, s:palette.bg0)
     call everforest#highlight('MiniPickPromptCaret', s:palette.blue, s:palette.bg0)
+    call everforest#highlight('MiniInputCaret', s:palette.blue, s:palette.bg0)
+    call everforest#highlight('MiniInputAdded', s:palette.green, s:palette.bg0)
+    call everforest#highlight('MiniInputHint', s:palette.grey1, s:palette.bg0)
+    call everforest#highlight('MiniInputSpecial', s:palette.orange, s:palette.bg0)
+    call everforest#highlight('MiniInputHide', s:palette.yellow, s:palette.bg1, 'bold')
   endif
 else
   call everforest#highlight('MiniPickPromptPrefix', s:palette.orange, s:palette.bg2)
   call everforest#highlight('MiniPickPromptCaret', s:palette.blue, s:palette.bg2)
+  call everforest#highlight('MiniInputCaret', s:palette.blue, s:palette.bg2)
+  call everforest#highlight('MiniInputAdded', s:palette.green, s:palette.bg2)
+  call everforest#highlight('MiniInputHint', s:palette.grey1, s:palette.bg2)
+  call everforest#highlight('MiniInputSpecial', s:palette.orange, s:palette.bg2)
+  call everforest#highlight('MiniInputHide', s:palette.yellow, s:palette.bg4, 'bold')
 endif
+highlight! link MiniInputPrompt FloatTitle
 call everforest#highlight('MiniStarterCurrent', s:palette.none, s:palette.none, 'nocombine')
 call everforest#highlight('MiniStatuslineDevinfo', s:palette.grey2, s:palette.bg3)
 call everforest#highlight('MiniStatuslineFilename', s:palette.grey1, s:palette.bg1)
